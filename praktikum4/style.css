@@ -1,0 +1,46 @@
+body {
+    /* Perubahan di sini: Menambahkan 'cover' dan 'fixed' */
+    background: url(anggrek.jpeg) no-repeat center center fixed; 
+    background-size: cover; 
+    
+    font-family: Georgia;
+}
+
+h1 {
+    background-color: purple;
+    text-align: center;
+    color: white;
+    /* Tambahkan margin-top: 0; agar h1 menempel di bagian atas layar */
+    margin-top: 0;
+}
+
+h2 {
+    color: red;
+    font-size: 25px;
+    /* Tambahkan float: left; dan margin-left: 20px; agar judul berdekatan dengan gambar */
+    float: left;
+    margin-left: 20px;
+}
+
+p {
+    /* Hapus margin-left: 50px karena gambar dan h2 sudah mengganggu tata letak */
+    /* Tambahkan padding-top agar paragraf tidak tertutup h2 dan gambar */
+    padding-top: 150px; /* Nilai ini mungkin perlu disesuaikan */
+    color: rgb(255, 251, 0); /* Kuning */
+    font-size: 24px;
+    /* Tambahkan text-shadow agar teks kuning lebih jelas di atas gambar */
+    text-shadow: 1px 1px 2px #000;
+}
+
+/* KODE TAMBAHAN UNTUK GAMBAR DI KONTEN */
+img {
+    float: left; /* Membuat gambar berada di kiri teks */
+    margin-right: 20px; /* Memberi jarak ke teks di kanannya */
+    width: 250px; /* Ukuran gambar, bisa disesuaikan */
+    height: auto;
+}
+
+/* Hapus float dari h2 setelahnya jika perlu */
+.clear {
+    clear: both;
+}

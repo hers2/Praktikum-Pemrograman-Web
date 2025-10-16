@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <title>Latihan 6</title>
+        <style type="text/css">
+            .floatnone {float: none; text-align: center;}
+            .floatleft { float: left; }
+            .floatright { float: right; }
+
+            .border {
+                width: 650px;
+                border: 2px solid #C33809;
+                margin: 20px;
+                padding: 10px;
+                overflow: hidden;
+            }
+
+            img {
+                box-shadow: 0 6px 6px rgba(0, 0, 0, 0.3);
+                border-radius: 5px;
+                margin: 5px;
+                width: 300px; 
+                height: auto;
+            }
+
+            h3 {
+                margin-top: 0;
+                color: #C33809;
+                font-family: Arial, sans-serif;
+            }
+            
+            body {
+                font-family: Arial, sans-serif;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="floatnone border">
+            <h3>Float None CSS</h3>
+            <img class="floatnone" src="Motor.jpg" alt="Motor Kece">
+            Gambar tanpa float akan tampil di kiri, dan teks muncul di bawah gambar.
+        </div>
+
+        <div class="floatleft border">
+            <h3>Float Left CSS</h3>
+            <img class="floatleft" src="Laptop.jpg" alt="Laptop">
+            Gambar difloat ke kiri, teks akan mengalir di sisi kanan gambar.
+        </div>
+
+        <div class="floatright border">
+            <h3>Float Right CSS</h3>
+            <img class="floatright" src="Flowers.jpg" alt="Bunga">
+            Gambar difloat ke kanan, teks akan mengalir di sisi kiri gambar.
+        </div>
+    </body>
+</html>
