@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Mahasiswa</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9fbff;
+      margin: 0;
+      padding: 20px;
+    }
+    h2 { text-align: center; }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .card {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(2, 2, 2, 0.1);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      width: 300px;
+    }
+
+    input, select, textarea {
+      padding: 8px;
+      border: 1px solid #cacaca;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 8px;
+      border: none;
+      border-radius: 5px;
+      background: #3a3c40;
+      color: white;
+      cursor: pointer;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    th, td {
+      border: 1px solid #e1e0e0;
+      padding: 6px;
+      text-align: left;
+    }
+
+    th {
+      background: #dbdddf;
+    }
+
+    .info, .console {
+      width: 300px;
+      min-height: 100px;
+    }
+
+    .console {
+      background: #000000;
+      color: #caced5;
+      font-family: monospace;
+      font-size: 13px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Formulir Pendaftaran</h2>
+
+  <div class="container">
+    <div class="card">
+      <form id="myForm">
+        <label>NAMA LENGKAP:</label>
+        <input type="text" id="nama" required>
+
+        <label>NIM</label>
+        <input type="text" id="NIM" required>
+
+        <label>Semester</label>
+        <input type="number" id="Semester" required>
+
+        <label>Program Studi:</label>
+        <select id="Program Studi">
+            <option value="A">Teknik Informatika</option>
+            <option value="B">Teknik Geologi</option>
+            <option value="C">Teknik Mesin</option>
+        </select>
+
+        <label>Email:</label>
+        <input type="email" id="email">
+
+        <button type="button" onclick="tambahData()">Tambah</button>
+      </form>
+    </div>
+
+    <div class="card info">
+        <h4>Infomasi Pengiriman</h4>
+        <p>Apa yang terjadi saat anda klik "kirim data"?</p>
+        <p><strong>data ditampilkan di console</strong></p>
+        <p><strong>data disimpan ke array</strong></p>
+        <p><strong>Jumlah data di-Update</strong></p>
+        <p><strong>Form akan kosong kembali</strong></p>
+    </div>
+
+    <div class="card console" id="console"></div>
+  </div>
+
+  <div class="card" style="margin: 20px auto; max-width: 700px;">
+    <table id="tabel">
+      <thead>
+        <tr>
+          <th>NO</th>
+          <th>NAMA</th>
+          <th>INFO</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <script>
+    let dataMahasiswa = [];
+    let noUrut = 1;
+    
+    function tambahData() {
+        const namaInput = document.getElementById('nama');
+        const nimInput = document.getElementById('NIM'); 
+        const semesterInput = document.getElementById('Semester');
+        const prodiInput = document.getElementById('Program Studi');
+        const emailInput = document.getElementById('email');
+        const tabelBody = document.querySelector('#tabel tbody');
+        const consoleOutput = document.getElementById('console');
+
+        const nama = namaInput.value.trim();
+        const nim = nimInput.value.trim();
+        const semester = parseInt(semesterInput.value.trim()); 
+        const prodiText = prodiInput.options[prodiInput.selectedIndex].text; 
+        const prodiValue = prodiInput.value;
+        const email = emailInput.value.trim();
+
+        if (nama === "" || nim === "" || isNaN(semester) || prodiValue === "") {
+            alert("Harap isi semua field yang wajib!");
+            return;
+        }
+
+        const dataBaru = {
+            no: noUrut,
+            nama: nama,
+            nim: nim,
+            semester: semester,
+            prodi_kode: prodiValue,
+            prodi_nama: prodiText,
+            email: email
+        };
+
+        dataMahasiswa.push(dataBaru);
+        noUrut++;
+
+        consoleOutput.innerHTML += `Data #${dataBaru.no}: ${JSON.stringify(dataBaru, null, 2)}\n--------------------\n`;
+        consoleOutput.scrollTop = consoleOutput.scrollHeight; 
+
+        const barisBaru = tabelBody.insertRow();
+        
+        const kolomNo = barisBaru.insertCell(0);
+        kolomNo.textContent = dataBaru.no;
+
+        const kolomNama = barisBaru.insertCell(1);
+        kolomNama.textContent = dataBaru.nama;
+
+        const kolomInfo = barisBaru.insertCell(2);
+        kolomInfo.innerHTML = `Prodi: ${dataBaru.prodi_nama}<br>Semester: ${dataBaru.semester}`;
+
+        document.getElementById('myForm').reset();
+    }
+  </script>
+</body>
+</html>
